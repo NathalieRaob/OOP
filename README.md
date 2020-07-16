@@ -4,4 +4,6 @@
         -Practice accessing the methods and attributes of different instances 
     #chaining_method
         -Understand how to chain methods
+    #bankAccount 
+        -Practice writing classes 
         
