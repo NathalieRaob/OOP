@@ -19,7 +19,6 @@ class BankAccount:
         return self 
     def yield_interest(self):
         #increases the account balance by the current balance * the interest rate(as long as the balance is positive)
-        #calculated the interest rate in a year 
         if self.balance > 0:
             self.balance = self.balance + self.balance * self.int_rate
             print(f"rate: {self.int_rate}")
@@ -27,10 +26,10 @@ class BankAccount:
 
     
 first_account = BankAccount()
-first_account.deposit(500).deposit(3000).deposit(700).withdraw(600).yield_interest().display_account_info()
+first_account.deposit(100).deposit(100).deposit(100).withdraw(200).yield_interest().display_account_info()
 
 second_account = BankAccount()
-second_account.deposit(40000).deposit(800).withdraw(500).withdraw(400).withdraw(300).withdraw(900).yield_interest().display_account_info()
+# second_account.deposit(40000).deposit(800).withdraw(500).withdraw(400).withdraw(300).withdraw(900).yield_interest().display_account_info()
 
 
 
