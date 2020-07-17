@@ -1,33 +1,32 @@
-from bankAccount import * 
-
-class User:
-    def __init__ (self, user_name, email_address, new_account):
-        self.name = user_name
-        self.email = email_address
-        self.account = BankAccount(int_rate=0.01, balance=0)
-        self.new_account = new_account
-    def make_deposit(self, amount):
-        self.account = amount
+class BankAccount:
+    def __init__(self,int_rate = 0.01, balance = 0):
+        self.int_rate = int_rate
+        self.balance = 0
+    def deposit(self, amount):
+        #increases the account balance by the given amount
+        self.balance += amount
         return self
-    def make_withdrawal(self, amount):
-        self.account = amount
-        return self
-    def display_user_balance(self):
-        print(f"User:{self.name}, Balance:${self.account}")
+    def withdraw(self, amount):
+        #decreases the account balance by the given amount if there are sufficient funds
+        #if there is not enough money, print a message "insufficient funds: Charging a $5 fee" and deduct $5
+        self.balance -= amount 
+        if self.balance < amount:
+            self.balance -= 5
+            print("Insufficient funds: Charging a $5 fee")      
         return self 
-    def transfer_money(self,other_user,amount):
-        #decrease the user's balance by the amount and add that amount to other_user's balance 
-        other_user.account += amount ##could also say other_user.make_deposit(amount)
-        self.account -= amount ##could also say self.make_withdrawal(amount)
-        return self
-    
-        
-user_one = User('Nath','nathfan@gmail.com',first_account)
-# user_two = User('Pathy', 'path@gmail.com')
-# user_three = User('Fab', 'fab@gmail.com')
+    def display_account_info(self):
+        print(f"Balance: ${self.balance}")
+        return self 
+    def yield_interest(self):
+        #increases the account balance by the current balance * the interest rate(as long as the balance is positive)
+        if self.balance > 0:
+            self.balance = self.balance + self.balance * self.int_rate
+            print(f"Rate: {self.int_rate}")
+        return self 
 
-user_one.make_deposit(100).make_deposit(100).make_deposit(100).make_withdrawal(200).display_user_balance()
-# user_two.make_deposit(2000).make_deposit(4000).make_withdrawal(350).make_withdrawal(650).display_user_balance()
-# user_three.make_deposit(20000).make_withdrawal(3400).make_withdrawal(500).make_withdrawal(600).display_user_balance()
-# user_one.transfer_money(user_three,500).display_user_balance()
-# user_three.display_user_balance()
+    
+first_account = BankAccount()
+first_account.deposit(500).deposit(3000).deposit(700).withdraw(600).yield_interest().display_account_info()
+
+second_account = BankAccount()
+second_account.deposit(400).deposit(800).withdraw(500).withdraw(400).withdraw(300).withdraw(900).yield_interest().display_account_info()
