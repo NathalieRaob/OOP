@@ -6,4 +6,5 @@
         -Understand how to chain methods
     #bankAccount 
         -Practice writing classes 
-        
+    #Users_with_BankAccount 
+        -Practice writing classes with associations 
