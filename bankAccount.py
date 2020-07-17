@@ -1,7 +1,8 @@
 class BankAccount:
-    def __init__(self,int_rate = 0.01, balance = 0):
+    def __init__(self,int_rate, balance, b_type):
         self.int_rate = int_rate
-        self.balance = 0
+        self.balance = balance
+        self.type = b_type
     def deposit(self, amount):
         #increases the account balance by the given amount
         self.balance += amount
@@ -9,26 +10,26 @@ class BankAccount:
     def withdraw(self, amount):
         #decreases the account balance by the given amount if there are sufficient funds
         #if there is not enough money, print a message "insufficient funds: Charging a $5 fee" and deduct $5
-        self.balance -= amount 
-        if self.balance < amount:
+        if self.balance > amount:
+            self.balance -= amount
+        else:
             self.balance -= 5
             print("Insufficient funds: Charging a $5 fee")      
         return self 
     def display_account_info(self):
-        print(f"Balance: ${self.balance}")
+        print(f"Current balance in {self.type}: ${self.balance}")
         return self 
     def yield_interest(self):
         #increases the account balance by the current balance * the interest rate(as long as the balance is positive)
         if self.balance > 0:
             self.balance = self.balance + self.balance * self.int_rate
-            print(f"rate: {self.int_rate}")
         return self 
 
     
-first_account = BankAccount()
-first_account.deposit(100).deposit(100).deposit(100).withdraw(200).yield_interest().display_account_info()
+# first_account = BankAccount()
+# first_account.deposit(100).deposit(100).deposit(100).withdraw(200).yield_interest().display_account_info()
 
-second_account = BankAccount()
+# second_account = BankAccount()
 # second_account.deposit(40000).deposit(800).withdraw(500).withdraw(400).withdraw(300).withdraw(900).yield_interest().display_account_info()
 
 
